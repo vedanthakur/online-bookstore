@@ -1,18 +1,8 @@
+## Help
 
-# Online Bookstore
+- ER Diagram is above as file "ER-Diagram.png"
+- MySQL queries are necessary for this project are on file "MySQL-quary.txt"
 
-This is a Online Bookstore Management System. This is a college project.
-
-
-
-## Web Based App
-
-This is a web based app developed by using PHP and MySQL.
-
-
-## ER Diagram
-
-- ER Diagram is in the files as ER-Diagram.png
 
 ## MySQL Databse Tables
 
@@ -52,7 +42,6 @@ CREATE TABLE cart (
   FOREIGN KEY (user_id) REFERENCES users(user_id),
   FOREIGN KEY (book_id) REFERENCES books(book_id)
 );
-
 
 ## Table for: Orders
 
@@ -97,8 +86,3 @@ CREATE TABLE wishlist (
   FOREIGN KEY (user_id) REFERENCES users(user_id),
   FOREIGN KEY (book_id) REFERENCES books(book_id)
 );
-
-
-## Help
-
-View Help directory for more details.
