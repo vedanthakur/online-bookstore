@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    color:darkslateblue;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    background-color:rgba(176, 196, 222, 0.607);
+}
+
+li {
+    display: inline-block;
+    margin: 10px;
+}
+
+li > a {
+    color: inherit;
+  text-decoration: none;
+}
+
+input, button, #description{
+    display: block;
+    margin: 20px 0px;
+    padding: 10px;
+    border-color: rgb(176, 196, 222);
+    border-radius: 10px;
+    background-color:rgba(227, 232, 237, 0.687);
+}
+
+form{
+    background-color: rgba(189, 205, 227, 0.354);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+input:hover, button:hover, textarea:hover{
+    border-color: rgb(121, 154, 197);
+    background-color:rgba(207, 219, 231, 0.475);
+}
+
+main {
+    margin: 10px;
+}
