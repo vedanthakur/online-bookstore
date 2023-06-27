@@ -23,7 +23,7 @@
                 <input type="password" name="password" placeholder="Enter password">
                 <input type="password" name="passagain" placeholder="Enter password again">
                 <input type="tel" name="mobile" placeholder="Enter mobile no.">
-                <input type="tel" name="address" placeholder="Enter address">
+                <input type="text" name="address" placeholder="Enter address">
                 <button type="submit" name="submit">Sign up</button>
             </form>
         <?php
