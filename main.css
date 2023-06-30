@@ -43,3 +43,7 @@ input:hover, button:hover, textarea:hover{
 main {
     margin: 10px;
 }
+
+.invisible-input {
+    display: none;
+  }

@@ -139,4 +139,6 @@ function addBook($conn, $title, $author, $description, $image, $publicationDate,
     header("location: ../book.php?error=none");
     exit();
 }
+
+
 ?>

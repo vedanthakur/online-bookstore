@@ -1,0 +1,41 @@
+.card {
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    float: left;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: auto;
+    height: 300px;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.card p {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.add-to-cart {
+    display: block;
+    width: 100%;
+    padding: 8px 0;
+    text-align: center;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: darkgreen;
+}

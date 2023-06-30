@@ -6,50 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="card.css">
     <title>Home</title>
-    <style>
-        .card {
-            width: 200px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px;
-            float: left;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+    $(".add-to-cart").on("click", function() {
+        var bookId = $(this).data("book-id");
+        var quantity = 1; // Set the default quantity to 1
+        addToCart(bookId, quantity);
+    });
 
-        .card img {
-            width: 100%;
-            height: auto;
+    function addToCart(bookId, quantity) {
+        // Send the bookId and quantity to the server-side script using AJAX
+        $.ajax({
+        url: "includes/add_to_cart.inc.php",
+        type: "POST",
+        data: { bookId: bookId, quantity: quantity },
+        success: function(response) {
+            alert("Book added to cart!");
+            // Optionally, update the cart view dynamically
+        },
+        error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+            alert("Failed to add book to cart. Please try again.");
         }
+        });
+    }
+    });
 
-        .card h3 {
-            margin-top: 10px;
-            font-size: 18px;
-            text-align: center;
-        }
-
-        .card p {
-            margin-top: 5px;
-            text-align: center;
-        }
-        
-        .add-to-cart {
-            display: block;
-            width: 100%;
-            padding: 8px 0;
-            text-align: center;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .add-to-cart:hover {
-            background-color: darkgreen;
-        }
-  </style>
+</script>
 </head>
 
 <body>
@@ -83,12 +69,12 @@
                         echo '<div class="card">';
                         
                         if ($row["image"]) {
-                            echo '<span><img width="100px" src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '" alt="Image"></span>';
+                            echo '<span><img src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '" alt="Image"></span>';
                         }
 
                         echo '<h3>' . $row["title"] . '</h3>';
                         echo '<p>' . $row["price"] . '</p>';
-                        echo '<button class="add-to-cart" name="'. $row["book_id"] .'">Add to Cart</button>';
+                        echo '<button class="add-to-cart '. $row["book_id"] .'">Add to Cart</button>';
                                 
                         echo '</div>'; // Close card div
                     }
