@@ -13,7 +13,7 @@
     $(document).ready(function() {
         $(".add-to-cart").on("click", function() {
             var bookId = $(this).attr("id");
-            alert(bookId);
+            // alert(bookId);
             var quantity = 1; // Set the default quantity to 1
             addToCart(bookId, quantity);
         });
@@ -28,10 +28,12 @@
                 // Check the response from the server
                 if (response === "success") {
                     // The book was added to the cart successfully
-                    alert("Book added to cart!");
+                    // alert("Book added to cart!");
+                    document.getElementById(bookId).innerHTML = "Book added to cart!";
                 } else {
                     // The book failed to be added to the cart
-                    alert("Failed to add book to cart. Please try again.1");
+                    // alert("Already added to cart!");
+                    document.getElementById(bookId).innerHTML = "Already added to cart!";
                 }
                 },
                 error: function(xhr, status, error) {

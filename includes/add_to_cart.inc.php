@@ -18,7 +18,7 @@ if (isset($_POST['bookId'])) {
   }
 
   // Bind the variables to the SQL statement
-  mysqli_stmt_bind_param($statement, "iii", $_SESSION['user-id'], $bookId, $quantity);
+  mysqli_stmt_bind_param($statement, "iii", $_SESSION['user_id'], $bookId, $quantity);
 
   // Execute the SQL statement
   $result = mysqli_stmt_execute($statement);
