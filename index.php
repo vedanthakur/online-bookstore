@@ -11,28 +11,36 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(document).ready(function() {
-    $(".add-to-cart").on("click", function() {
-        var bookId = $(this).data("book-id");
-        var quantity = 1; // Set the default quantity to 1
-        addToCart(bookId, quantity);
-    });
-
-    function addToCart(bookId, quantity) {
-        // Send the bookId and quantity to the server-side script using AJAX
-        $.ajax({
-        url: "includes/add_to_cart.inc.php",
-        type: "POST",
-        data: { bookId: bookId, quantity: quantity },
-        success: function(response) {
-            alert("Book added to cart!");
-            // Optionally, update the cart view dynamically
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr.responseText);
-            alert("Failed to add book to cart. Please try again.");
-        }
+        $(".add-to-cart").on("click", function() {
+            var bookId = $(this).attr("id");
+            alert(bookId);
+            var quantity = 1; // Set the default quantity to 1
+            addToCart(bookId, quantity);
         });
-    }
+
+        function addToCart(bookId, quantity) {
+            // Send the bookId and quantity to the server-side script using AJAX
+            $.ajax({
+                url: "includes/add_to_cart.inc.php",
+                type: "POST",
+                data: { bookId: bookId, quantity: quantity },
+                success: function(response) {
+                // Check the response from the server
+                if (response === "success") {
+                    // The book was added to the cart successfully
+                    alert("Book added to cart!");
+                } else {
+                    // The book failed to be added to the cart
+                    alert("Failed to add book to cart. Please try again.1");
+                }
+                },
+                error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+                alert("Failed to add book to cart. Please try again.2");
+                }
+            });
+        }
+
     });
 
 </script>
@@ -47,7 +55,6 @@
             if (isset($_SESSION["name"])) {
                 echo '<h1>' . 'Welcome ' . strtok($_SESSION["name"], " ") . '</h1>';
             
-
                 require_once 'includes/dbh.inc.php';
 
                 // Check if the connection was successful
@@ -74,7 +81,8 @@
 
                         echo '<h3>' . $row["title"] . '</h3>';
                         echo '<p>' . $row["price"] . '</p>';
-                        echo '<button class="add-to-cart '. $row["book_id"] .'">Add to Cart</button>';
+
+                        echo '<button class="add-to-cart" id="'. $row["book_id"] .'">Add to Cart</button>';
                                 
                         echo '</div>'; // Close card div
                     }
@@ -90,6 +98,7 @@
       
     ?>
     </main>
+    
 </body>
 
 </html>

@@ -1,25 +1,41 @@
 <?php
-    session_start();
-    // Retrieve the book ID from the AJAX request
-    $bookId = $_POST['bookId'];
-    $userId = $_SESSION["user-id"];
-    $quantity = $_POST['quantity'];
+if (isset($_POST['bookId'])) {
+  session_start();
 
-    require_once 'dbh.inc.php';
+  // Retrieve the book ID and quantity from the AJAX request
+  $bookId = $_POST['bookId'];
+  $quantity = $_POST['quantity'];
 
-    $query = "INSERT INTO `cart` (`book_id`, `user_id`, `quantity`) VALUES (?, ?, ?)";
+  require_once 'dbh.inc.php';
 
-    $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, "sss", $bookId, $userId, $quantity);
-    $result = mysqli_stmt_execute($stmt);
+  $sql = "INSERT INTO `cart`(`user_id`, `book_id`, `quantity`) VALUES (?, ?, ?)";
+  $statement = mysqli_stmt_init($conn);
 
+  if (!mysqli_stmt_prepare($statement, $sql)) {
+    // The SQL statement failed to prepare
+    echo "error";
+    exit();
+  }
 
-    // Check if the query was successful
-    if ($result) {
+  // Bind the variables to the SQL statement
+  mysqli_stmt_bind_param($statement, "iii", $_SESSION['user-id'], $bookId, $quantity);
+
+  // Execute the SQL statement
+  $result = mysqli_stmt_execute($statement);
+  mysqli_stmt_close($statement);
+
+  // Check if the query was successful
+  if ($result) {
     // Provide a success response to the AJAX request
     echo "success";
-    } else {
+  } else {
     // Provide an error response to the AJAX request
     echo "error";
-    }
+  }
+
+  mysqli_close($conn);
+} else {
+  // Provide an error response to the AJAX request
+  echo "error";
+}
 ?>

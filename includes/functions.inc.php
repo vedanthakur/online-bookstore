@@ -106,7 +106,7 @@ function loginUser($conn, $email, $password) {
     else if($checkPassword === true){
         session_start();
         $_SESSION["email"] = $emailExists["email"];
-        $_SESSION["user-id"] = $emailExists["user-id"];
+        $_SESSION["user-id"] = $emailExists["user_id"];
         $_SESSION["name"] = $emailExists["name"];
         $_SESSION["mobile"] = $emailExists["mobile"];
         $_SESSION["address"] = $emailExists["address"];

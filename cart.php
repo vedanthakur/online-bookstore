@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Add to Cart</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
+    <title>Add Book</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
+    <?php
+        include "header.php";
+        if (!isset($_SESSION["email"])) {
+            header("location: index.php?error=notloggedin");
+            exit();
+        }
+    ?>
   <h1>Add to Cart</h1>
   <form action="add_to_cart.php" method="POST">
     <label for="user-id">User ID:</label>
