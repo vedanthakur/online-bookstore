@@ -41,6 +41,7 @@ if (isset($_POST['book_ids'])) {
 
         // Check if the query was successful
         if ($result) {
+            header("location: ../index.php");
             echo "success";
         } else {
             echo "error";

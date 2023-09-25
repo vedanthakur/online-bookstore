@@ -52,7 +52,7 @@
     <?php
         include 'header.php';
         if (!isset($_SESSION["email"])) {
-            header("location: index.php?error=notloggedin");
+            header("location: login.php?error=notloggedin");
             exit();
         }
     ?>
