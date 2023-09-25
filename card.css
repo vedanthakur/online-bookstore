@@ -24,7 +24,7 @@
     text-align: center;
 }
 
-.add-to-cart {
+.add-to-cart, .order-now {
     display: block;
     width: 100%;
     padding: 8px 0;
@@ -36,6 +36,6 @@
     cursor: pointer;
 }
 
-.add-to-cart:hover {
+.add-to-cart:hover, .order-now:hover {
     background-color: darkgreen;
 }

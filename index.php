@@ -38,7 +38,7 @@
                 },
                 error: function(xhr, status, error) {
                 console.log(xhr.responseText);
-                alert("Failed to add book to cart. Please try again.2");
+                alert("Failed to add book to cart. Please try again.");
                 }
             });
         }
