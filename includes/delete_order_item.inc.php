@@ -3,13 +3,13 @@ if (isset($_POST["delete_id"])) {
     $delete_id  = $_POST["delete_id"];
     require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
-    function delete_cart($conn, $delete_id) {
-        $sql = "DELETE FROM cart WHERE `cart`.`cart_id` = ?";
+    function delete_order($conn, $delete_id) {
+        $sql = "DELETE FROM orders WHERE `orders`.`order_id` = ?";
         $statement = mysqli_stmt_init($conn);
         
         if (!mysqli_stmt_prepare($statement, $sql)) {
             // echo '<h1>Error: Failed to delete</h1>';
-            header("location: ../cart.php?error=statementfailed");
+            header("location: ../order.php?error=statementfailed");
             exit();
         }
         
@@ -18,11 +18,11 @@ if (isset($_POST["delete_id"])) {
         mysqli_stmt_close($statement);
         // echo '<h1>Item Deleted</h1>';
         if ($result) {
-            header("location: ../cart.php?error=none".$delete_id);
+            header("location: ../order.php?error=none".$delete_id);
         }
         exit();
     }
-    delete_cart($conn, $delete_id);
+    delete_order($conn, $delete_id);
 }
 
 ?>

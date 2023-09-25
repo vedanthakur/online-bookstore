@@ -110,6 +110,7 @@ function loginUser($conn, $email, $password) {
         $_SESSION["name"] = $emailExists["name"];
         $_SESSION["mobile"] = $emailExists["mobile"];
         $_SESSION["address"] = $emailExists["address"];
+        $_SESSION["role"] = $emailExists["role"];
         header("location: ../index.php");
         exit();
     }

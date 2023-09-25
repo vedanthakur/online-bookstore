@@ -16,52 +16,11 @@
             document.getElementById("total").innerHTML = sum;
         });
 
-        function orderNow() {
-            const bookElement = document.querySelectorAll('.bookIds');
-            bookIds = "";
-            bookElement.forEach((bookElement) => {
-                bookIds += (parseInt(bookElement.textContent) + " ");
-            });
-
-            const quantityElements = document.querySelectorAll('.quantity');
-            quantities = "";
-            quantityElements.forEach((quantityElements) => {
-                quantities += (parseInt(quantityElements.value) + " ");
-            });
-
-            var form = document.createElement("form");
-            form.method = "POST";
-            form.action = "includes/order.php";
-
-            var input = document.createElement("input");
-            input.type = "hidden";
-            input.name = "book_ids";
-            input.value = bookIds;
-
-            form.appendChild(input);
-
-            var input2 = document.createElement("input");
-            input2.type = "hidden";
-            input2.name = "total_amount";
-            input2.value = document.getElementById("total").textContent;
-
-            form.appendChild(input2);
-
-            var input3 = document.createElement("input");
-            input3.type = "hidden";
-            input3.name = "quantity";
-            input3.value = quantities;
-
-            form.appendChild(input3);
-
-            document.body.appendChild(form);
-            form.submit();
-        }
-
+        
         function deleteThis(id) {
             var form = document.createElement("form");
             form.method = "POST";
-            form.action = "includes/delete_card_item.inc.php";
+            form.action = "includes/delete_order_item.inc.php";
 
             var input = document.createElement("input");
             input.type = "hidden";
@@ -74,19 +33,6 @@
             form.submit();
         }
 
-        function calculatePrice(price, id){
-            quantity = document.getElementById(id).value;
-            totalPrice = price * quantity;
-            document.getElementById("p"+id).innerHTML = totalPrice;
-            
-            const priceElements = document.querySelectorAll('.price');
-            sum = 0;
-            priceElements.forEach((priceElement) => {
-                sum += parseInt(priceElement.textContent);
-            });
-            document.getElementById("total").innerHTML = sum;
-        }
-
     </script>
 
 </head>
@@ -94,9 +40,12 @@
 <body>
     <?php
         include "header.php";
-        if (!isset($_SESSION["email"])) {
-            header("location: index.php?error=notloggedin");
-            exit();
+        if (isset($_SESSION["role"])) {
+            if ($_SESSION["role"] !== "Admin") {
+                header("location: index.php?notAuthorized");    
+            }    
+        } else {
+            header("location: login.php?notLoggedIn");
         }
     ?>
   <main>
@@ -152,12 +101,13 @@
                         echo '<p>Order ID:' . $row["order_id"] . '</p>';
                         echo '<p>Orders by ' . $row["name"] . '</p>';
                         echo '<p>Address: ' . $row["address"] . '</p>';
-                        echo '<p>' . $row["user_id"] . '</p>';
-                        echo '<p>' . $row["book_ids"] . '</p>';                        
-                        echo '<p>' . $row["quantity"] . '</p>';
-                        echo '<p>' . $row["order_date"] . '</p>';
-                        echo '<p>' . $row["total_amount"] . '</p>';
-                        echo '<p>' . $row["status"] . '</p>';
+                        echo '<p>User ID: ' . $row["user_id"] . '</p>';
+                        echo '<p>Book IDs" ' . $row["book_ids"] . '</p>';                        
+                        echo '<p>Quantities: ' . $row["quantity"] . '</p>';
+                        echo '<p>Ordered date: ' . $row["order_date"] . '</p>';
+                        echo '<p>Total amount: ' . $row["total_amount"] . '</p>';
+                        echo '<p>Status: ' . $row["status"] . '</p>';
+                        echo '<button class="remove" onclick="deleteThis('.$row["order_id"].')">Delevert and Delete now</button>';
                         //echo '<button class="remove" onclick="deleteThis('.$row["cart_id"].')">Remove from Cart</button>';
                         echo '</div>'; // Close card div
                       }

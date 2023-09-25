@@ -10,9 +10,12 @@
 <body>
     <?php
         include "header.php";
-        if (!isset($_SESSION["email"])) {
-            header("location: index.php?error=notloggedin");
-            exit();
+        if (isset($_SESSION["role"])) {
+            if ($_SESSION["role"] !== "Admin") {
+                header("location: index.php?notAuthorized");    
+            }    
+        } else {
+            header("location: login.php?notLoggedIn");
         }
     ?>
     <h1>Add Book</h1>

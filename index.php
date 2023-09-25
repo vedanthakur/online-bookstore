@@ -51,6 +51,10 @@
 <body>
     <?php
         include 'header.php';
+        if (!isset($_SESSION["email"])) {
+            header("location: index.php?error=notloggedin");
+            exit();
+        }
     ?>
     <main>
         <?php

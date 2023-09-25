@@ -17,7 +17,11 @@
         else {
             echo '<main>';
             echo '<h1>' . $_SESSION["name"] . '</h1>';
-            
+            echo '<p>Email: ' .$_SESSION["email"];
+            echo '<p>User ID: ' .$_SESSION["user_id"]. '</p>';
+            echo '<p>Mobile: ' .$_SESSION["mobile"]. '</p>';
+            echo '<p>Address: ' .$_SESSION["address"]. '</p>';
+            echo '<p>Role: ' .$_SESSION["role"]. '</p>';
             echo '</main>';
         }
     ?>
