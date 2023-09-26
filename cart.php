@@ -94,9 +94,12 @@
 <body>
     <?php
         include "header.php";
-        if (!isset($_SESSION["email"])) {
-            header("location: index.php?error=notloggedin");
-            exit();
+        if (isset($_SESSION["role"])) {
+            if ($_SESSION["role"] !== "User") {
+                header("location: index.php?notAuthorized");    
+            }    
+        } else {
+            header("location: login.php?notLoggedIn");
         }
     ?>
   <main>

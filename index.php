@@ -88,7 +88,11 @@
                         echo '<h3>' . $row["title"] . '</h3>';
                         echo '<p>' . $row["price"] . '</p>';
 
-                        echo '<button class="add-to-cart" id="'. $row["book_id"] .'">Add to Cart</button>';
+                        if (isset($_SESSION["role"])) {
+                            if ($_SESSION["role"] == "User") {
+                                echo '<button class="add-to-cart" id="'. $row["book_id"] .'">Add to Cart</button>';
+                            }    
+                        }
                                 
                         echo '</div>'; // Close card div
                     }
