@@ -10,10 +10,11 @@
 
                 echo '<li><a href="profile.php">Profile</a></li>';
                 echo '<li><a href="includes/logout.inc.php">Log out</a></li>';
-                echo '<li><a href="cart.php">Cart</a></li>';
                 if ($_SESSION["role"] == "Admin") {
                     echo '<li><a href="book.php">Add Book</a></li>';
                     echo '<li><a href="order.php">Orders</a></li>';
+                } elseif ($_SESSION["role"] == "User") {
+                    echo '<li><a href="cart.php">Cart</a></li>';
                 }
             }
             else {
