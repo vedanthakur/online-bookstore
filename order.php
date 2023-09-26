@@ -98,7 +98,6 @@
                                 }
                             }
                         }
-                        echo '<p>Order ID:' . $row["order_id"] . '</p>';
                         echo '<p>Orders by ' . $row["name"] . '</p>';
                         echo '<p>Address: ' . $row["address"] . '</p>';
                         echo '<p>User ID: ' . $row["user_id"] . '</p>';
