@@ -63,10 +63,7 @@
                 $user_id = $_SESSION["user_id"];
 
                 // SQL query to fetch all elements from the table
-                $sql = "SELECT * FROM `orders`
-                JOIN `users` ON `orders`.`user_id` = `orders`.`user_id`
-                JOIN `books` ON `orders`.`book_ids` = `books`.`book_id`
-                ORDER BY `orders`.`order_id`";
+                $sql = "SELECT * FROM `orders`";
 
                 
 
@@ -82,38 +79,34 @@
                         echo '<div class="card">';
                         
                         foreach ($bookIds as $bookId) {
-                        
-                        // // user_id	book_id	quantity	
-                        //     // echo $bookId . '<br>';
-
                             $sql1 = "SELECT * FROM `books` WHERE book_id = '$bookId'";
                             $result1 = mysqli_query($conn, $sql1);
                             if (mysqli_num_rows($result1) > 0) {
                                 // Loop through each row and display the elements
                                 while ($row1 = mysqli_fetch_assoc($result1)) {
-                                    if ($row["image"]) {
-                                        echo '<span><img src="data:image/jpeg;base64,' . base64_encode($row1["image"]) . '" alt="Image" max-width="30"></span>';
-                                    }
+                                    // if ($row["image"]) {
+                                    //     echo '<span><img src="data:image/jpeg;base64,' . base64_encode($row1["image"]) . '" alt="Image" max-width="30"></span>';
+                                    // }
                                     echo '<p>'. $row1["title"] . '</p><br>';
                                 }
                             }
                         }
-                        echo '<p>Orders by ' . $row["name"] . '</p>';
-                        echo '<p>Address: ' . $row["address"] . '</p>';
+                        // echo '<p>Orders by ' . $row["name"] . '</p>';
+                        // echo '<p>Address: ' . $row["address"] . '</p>';
                         echo '<p>User ID: ' . $row["user_id"] . '</p>';
                         echo '<p>Book IDs" ' . $row["book_ids"] . '</p>';                        
-                        echo '<p>Quantities: ' . $row["quantity"] . '</p>';
+                        // echo '<p>Quantities: ' . $row["quantity"] . '</p>';
                         echo '<p>Ordered date: ' . $row["order_date"] . '</p>';
                         echo '<p>Total amount: ' . $row["total_amount"] . '</p>';
                         echo '<p>Status: ' . $row["status"] . '</p>';
                         echo '<button class="remove" onclick="deleteThis('.$row["order_id"].')">Delevert and Delete now</button>';
                         //echo '<button class="remove" onclick="deleteThis('.$row["cart_id"].')">Remove from Cart</button>';
                         echo '</div>'; // Close card div
-                      }
-                    } else {
-                      echo "No elements found in the table.";
                     }
-                    echo '</div><br>';  // Close card div
+                } else {
+                      echo "No elements found in the table.";
+                }
+                echo '</div><br>';  // Close card div
                     
                 // Close the database connection
                 mysqli_close($conn);
